@@ -3,7 +3,7 @@ body {
     padding: 0;
     min-height: 100vh;
     height: 100vh;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,49 +12,30 @@ body {
     overflow: hidden;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    animation: backgroundChange 2s ease-out 6.5s forwards;
+}
+
+@keyframes backgroundChange {
+    from {
+        background: white;
+    }
+    to {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    }
 }
 
 .heart-container {
     position: relative;
     margin-bottom: 60px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
-.heart-container:hover {
-    transform: scale(1.1);
-}
 
-.heart-click-hint {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    animation: heartHintAppear 1s ease-out 5.5s forwards, hintGlow 2s ease-in-out 6.5s infinite alternate;
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 10;
-}
 
-@keyframes heartHintAppear {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
 
 .heart-svg {
     width: 360px;
     height: 330px;
+    display: block;
 }
 
 .heart-path {
@@ -76,6 +57,9 @@ body {
 }
 
 @keyframes fillHeart {
+    from {
+        fill: none;
+    }
     to {
         fill: url(#heartFillGradient);
         stroke-dasharray: none;
@@ -143,7 +127,16 @@ body {
 }
 
 .letter-container {
-    display: none;
+    position: relative;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: letterFloat 1s ease-out 5.5s forwards;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .letter-container:hover {
