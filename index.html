@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>I Love You Rana</title>
+  </head>
+  <body>
+    <audio id="backgroundMusic" loop>
+      <source src="nothing.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    
+    <div class="background-hearts">
+      <div class="bg-heart">💖</div>
+      <div class="bg-heart">💕</div>
+      <div class="bg-heart">💖</div>
+      <div class="bg-heart">💕</div>
+      <div class="bg-heart">💖</div>
+      <div class="bg-heart">💖</div>
+      <div class="bg-heart">💕</div>
+      <div class="bg-heart">💖</div>
+      <div class="bg-heart">💕</div>
+      <div class="bg-heart">💖</div>
+    </div>
+
+    <div class="heart-container">
+      <div class="heart-glow"></div>
+      <svg class="heart-svg" viewBox="0 0 200 180">
+        <path
+          class="heart-path"
+          d="M100,150 C100,150 170,100 170,70 C170,50 155,35 135,35 C120,35 110,45 100,55 C90,45 80,35 65,35 C45,35 30,50 30,70 C30,100 100,150 100,150 Z"
+        />
+      </svg>
+    </div>
+
+    <div class="message">I love you so much Rana</div>
+
+    <div class="letter-container" onclick="openLetter()">
+      <div style="margin-bottom: 30px">
+        <div class="envelope-wrapper">
+          <div class="magic-sparkles">
+            <div class="sparkle-ring"></div>
+            <div class="sparkle-ring"></div>
+            <div class="sparkle-ring"></div>
+            <div class="sparkle-ring"></div>
+            <div class="sparkle-ring"></div>
+            <div class="sparkle-ring"></div>
+          </div>
+          <div class="envelope">
+            <div class="letter-paper">💌</div>
+          </div>
+        </div>
+        <div class="click-hint" style="margin-bottom: 30px">
+          Click to open 💕
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="letterModal" onclick="closeLetter()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">💖 Love Letter to Rana 💖</div>
+        <div class="modal-message">
+          To my hardworking girlfriend,<br /><br />
+
+          For as long as I'm here, I will bring you to a place where it’s okay to
+          be weak. I’ll remind you that you don’t always have to be strong,
+          because even in your weakest moments, you are still worthy of love,
+          kindness, and being held without question.<br /><br />
+
+          Even in your quietest cries and gentlest sighs, you are enough. You
+          don’t have to carry everything alone. I will be here, always, to
+          remind you that softness is not a flaw, and needing someone is never a
+          burden.<br /><br />
+
+          You are safe with me. Always. And no matter how heavy the world feels,
+          my arms will always be a place for you to rest.<br /><br />
+
+          Most of all, I just want to say I love you more than everything, and I will love you for the rest of my life 💕<br/><br/>
+          Bondeth
+        </div>
+        <button class="close-btn" onclick="closeLetter()">
+          <span>Keep this love forever 💖</span>
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
