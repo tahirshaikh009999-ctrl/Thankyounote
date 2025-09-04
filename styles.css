@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     height: 100vh;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     display: flex;
@@ -10,6 +11,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
     overflow: hidden;
     position: relative;
+    -webkit-overflow-scrolling: touch;
 }
 
 .heart-container {
@@ -18,8 +20,8 @@ body {
 }
 
 .heart-svg {
-    width: 280px;
-    height: 250px;
+    width: 320px;
+    height: 290px;
 }
 
 .heart-path {
@@ -449,6 +451,26 @@ body {
     }
 }
 
+/* Enhanced Mobile Touch Support */
+@media (hover: none) and (pointer: coarse) {
+    .letter-container {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .letter-container:active {
+        transform: translateY(-5px) scale(0.98);
+    }
+    
+    .envelope {
+        transition: transform 0.2s ease;
+    }
+    
+    .envelope:active {
+        transform: scale(0.95);
+    }
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 480px) {
     .message {
@@ -620,6 +642,11 @@ body {
 }
 
 @media (max-width: 320px) {
+    body {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
     .message {
         font-size: 1.5rem;
         padding: 0 10px;
@@ -630,9 +657,18 @@ body {
         height: 120px;
     }
     
+    .heart-container {
+        margin-bottom: 30px;
+    }
+    
     .title {
         font-size: 0.9rem;
         padding: 0 10px;
+    }
+
+    .letter-container {
+        bottom: 15px;
+        right: 15px;
     }
 
     .envelope {
@@ -660,6 +696,12 @@ body {
         font-size: 14px;
     }
 
+    .click-hint {
+        font-size: 0.65rem;
+        bottom: -25px;
+        padding: 3px 6px;
+    }
+
     .modal-content {
         padding: 15px;
         margin: 5px;
@@ -669,15 +711,18 @@ body {
 
     .modal-header {
         font-size: 1.3rem;
+        margin-bottom: 15px;
     }
 
     .modal-message {
         font-size: 0.95rem;
         padding: 12px;
+        line-height: 1.5;
     }
 
     .close-btn {
         padding: 10px 20px;
         font-size: 0.9rem;
+        min-height: 40px;
     }
 }
