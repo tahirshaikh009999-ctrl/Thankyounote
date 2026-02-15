@@ -1,8 +1,15 @@
 body {
-    margin: 0; padding: 0; min-height: 100vh;
-    background: white; display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    font-family: 'Ubuntu', sans-serif; overflow: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+    overflow: hidden;
+    position: relative;
     animation: backgroundChange 2s ease-out 6.5s forwards;
 }
 
@@ -10,41 +17,44 @@ body {
     to { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
 }
 
-/* HEART ANIMATIONS */
-.heart-container { position: relative; margin-bottom: 40px; }
-.heart-svg { width: 300px; height: 280px; }
+/* HEART & MESSAGE STYLES */
+.heart-container { position: relative; margin-bottom: 60px; }
+.heart-svg { width: 360px; height: 330px; display: block; }
 .heart-path {
     fill: none; stroke: url(#heartGradient); stroke-width: 8;
     stroke-dasharray: 1000; stroke-dashoffset: 1000;
-    animation: drawHeart 3.5s forwards, fillHeart 1.5s 3.5s forwards, heartPulse 3s 4s infinite;
+    animation: drawHeart 3.5s ease-in-out forwards, fillHeart 1.5s ease-in-out 3.5s forwards, heartPulse 3s ease-in-out 4s infinite;
 }
+
 @keyframes drawHeart { to { stroke-dashoffset: 0; } }
 @keyframes fillHeart { to { fill: url(#heartFillGradient); stroke-dasharray: none; } }
 @keyframes heartPulse { 50% { transform: scale(1.05); } }
 
-/* MESSAGE & ENVELOPE */
 .message {
-    font-size: 2rem; font-weight: bold; text-align: center;
+    font-size: 2.8rem; font-weight: bold; color: transparent; text-align: center;
     background: linear-gradient(45deg, #ff6b6b, #ffa8a8);
-    -webkit-background-clip: text; color: transparent;
-    opacity: 0; animation: revealMessage 1s 4.5s forwards;
+    background-clip: text; -webkit-background-clip: text;
+    opacity: 0; animation: revealMessage 1s ease-out 4.5s forwards;
 }
+
 @keyframes revealMessage { to { opacity: 1; transform: translateY(0); } }
 
+/* ENVELOPE STYLES */
 .letter-container {
-    margin-top: 30px; opacity: 0; animation: fadeIn 1s 5.5s forwards;
-    cursor: pointer; text-align: center;
+    margin-top: 40px; opacity: 0; animation: fadeIn 1s ease-out 5.5s forwards;
+    cursor: pointer; z-index: 100;
 }
 .envelope {
-    width: 100px; height: 65px; background: #f8f9fa;
-    border-radius: 8px; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 120px; height: 80px; background: #f8f9fa;
+    border-radius: 8px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
+@keyframes fadeIn { to { opacity: 1; } }
 
-/* UPDATED MODAL BOX */
+/* MODAL SYSTEM - CENTERING FIX */
 .modal {
-    display: none; 
-    position: fixed; /* Ensures it stays relative to the window, not the page */
-    z-index: 2000;
+    display: none; /* Controlled by JS */
+    position: fixed;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -52,47 +62,58 @@ body {
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
     
-    /* These three lines center the content perfectly */
-    display: none; 
+    /* Perfect Centering Logic */
     justify-content: center;
     align-items: center;
 }
 
-/* Add this class via JS or change display:none above to display:flex when active */
-.modal.active {
-    display: flex;
-}
-
 .modal-content {
-    /* Remove position: absolute and transform: translate */
     background: white;
-    padding: 30px;
+    padding: 40px;
     border-radius: 20px;
     width: 90%;
-    max-width: 500px;
-    max-height: 85vh; /* Prevents modal from going off-screen vertically */
-    overflow-y: auto; /* Adds scrollbar inside if text is long */
+    max-width: 550px;
+    max-height: 85vh;
+    overflow-y: auto;
     position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     animation: modalBloom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes modalBloom {
-    0% { opacity: 0; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+    font-size: 1.8rem; font-weight: bold; text-align: center;
+    color: #ff6b6b; margin-bottom: 20px;
+}
+
+.modal-message {
+    font-size: 1.1rem; line-height: 1.8; color: #444;
+    text-align: left; background: rgba(255, 107, 107, 0.03);
+    padding: 20px; border-radius: 15px; border-left: 4px solid #ff6b6b;
+}
+
+.modal-footer {
+    display: flex; gap: 15px; justify-content: center; margin-top: 25px;
 }
 
 .close-btn {
-    background: #ff6b6b; color: white; border: none;
-    padding: 12px 20px; border-radius: 25px; cursor: pointer;
-    font-weight: bold; transition: 0.3s;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white; border: none; padding: 12px 25px;
+    border-radius: 50px; font-weight: 600; cursor: pointer;
+    transition: 0.3s;
 }
-.close-btn.secondary { background: #eee; color: #666; }
 
-@keyframes fadeIn { to { opacity: 1; } }
+.close-btn.secondary {
+    background: #f0f0f0; color: #666;
+}
 
-/* Mobile fixes */
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 480px) {
-    .heart-svg { width: 200px; height: 180px; }
-    .message { font-size: 1.5rem; }
+    .heart-svg { width: 220px; height: 200px; }
+    .message { font-size: 1.8rem; }
+    .modal-content { padding: 25px; width: 85%; }
 }
