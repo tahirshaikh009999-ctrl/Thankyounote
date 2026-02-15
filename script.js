@@ -5,15 +5,13 @@ function openLetter(pageNumber) {
         music.play().catch(e => console.log("Audio play blocked"));
     }
 
-    // Hide all modals
-    const allModals = document.querySelectorAll('.modal');
-    allModals.forEach(modal => modal.style.display = 'none');
+   const allModals = document.querySelectorAll('.modal');
+    allModals.forEach(m => m.style.display = 'none');
 
-    // Show the specific page
-    const targetModal = document.getElementById('modal' + pageNumber);
-    if (targetModal) {
-        targetModal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Stop background scrolling
+    const target = document.getElementById('modal' + pageNumber);
+    if (target) {
+        target.style.display = 'flex'; // Use flex instead of block
+        document.body.style.overflow = 'hidden';
     }
 }
 
