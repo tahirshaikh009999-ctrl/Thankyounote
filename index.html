@@ -87,6 +87,43 @@
           will love you for the rest of my life 💕<br /><br />
           Bondeth
         </div>
+        <div class="modal" id="letterModal">
+    <div class="modal-content">
+        <div class="modal-header">💖 Message One 💖</div>
+        <div class="modal-message">
+            To my hardworking girlfriend... [Your first message here]
+        </div>
+        <div class="modal-footer">
+            <button class="close-btn" onclick="openModal('letterModal2')">Next Message ✨</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="letterModal2">
+    <div class="modal-content">
+        <div class="modal-header">🌸 Message Two 🌸</div>
+        <div class="modal-message">
+            Write your second message to Rana here...
+        </div>
+        <div class="modal-footer">
+            <button class="close-btn secondary" onclick="openModal('letterModal')">Back</button>
+            <button class="close-btn" onclick="openModal('letterModal3')">Next ✨</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="letterModal3">
+    <div class="modal-content">
+        <div class="modal-header">💍 Message Three 💍</div>
+        <div class="modal-message">
+            Write your final message to Rana here...
+        </div>
+        <div class="modal-footer">
+            <button class="close-btn secondary" onclick="openModal('letterModal2')">Back</button>
+            <button class="close-btn" onclick="closeAllLetters()">Close Forever 💖</button>
+        </div>
+    </div>
+</div>
         <button class="close-btn" onclick="closeLetter()">
           <span>Keep this love forever 💖</span>
         </button>
