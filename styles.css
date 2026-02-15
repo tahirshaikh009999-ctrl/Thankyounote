@@ -15,42 +15,6 @@ body {
     animation: backgroundChange 2s ease-out 6.5s forwards;
 }
 
-/* Fix for scrolling and centering */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    overflow-y: auto; /* Allows content to scroll if too long */
-    padding: 20px 0;
-}
-
-.modal-content {
-    position: relative;
-    top: 0; /* Changed from 50% to prevent vertical cutoff */
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 40px auto; /* Centers the modal with space top/bottom */
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 500px;
-    width: 90%;
-    animation: modalBloom 0.4s ease-out;
-}
-
-.modal-footer {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
 /* Secondary button style for "Back" */
 .close-btn.secondary {
     background: #ccc;
@@ -60,18 +24,6 @@ body {
 
 .close-btn.secondary:hover {
     background: #bbb;
-}
-
-@keyframes modalBloom {
-    from { opacity: 0; transform: translateX(-50%) scale(0.9); }
-    to { opacity: 1; transform: translateX(-50%) scale(1); }
-}
-
-/* Ensure images/text don't break the layout on mobile */
-.modal-message {
-    word-wrap: break-word;
-    max-height: 60vh;
-    overflow-y: auto;
 }
 
 @keyframes backgroundChange {
