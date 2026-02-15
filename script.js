@@ -1,27 +1,49 @@
+/**
+ * Opens a specific modal page and handles music
+ * @param {number} pageNumber - The ID suffix of the modal to open
+ */
 function openLetter(pageNumber) {
-    // Play music only on the first interaction
+    // 1. Handle Background Music
     const music = document.getElementById('backgroundMusic');
-    if (music.paused) {
-        music.play().catch(e => console.log("Audio play blocked"));
+    if (music && music.paused) {
+        music.play().catch(e => console.log('Music play blocked by browser'));
     }
 
-   const allModals = document.querySelectorAll('.modal');
-    allModals.forEach(m => m.style.display = 'none');
+    // 2. Hide all open modals
+    const allModals = document.querySelectorAll('.modal');
+    allModals.forEach(modal => {
+        modal.style.display = 'none';
+    });
 
-    const target = document.getElementById('modal' + pageNumber);
-    if (target) {
-        target.style.display = 'flex'; // Use flex instead of block
-        document.body.style.overflow = 'hidden';
+    // 3. Show the requested modal using FLEX for centering
+    const targetModal = document.getElementById('modal' + pageNumber);
+    if (targetModal) {
+        targetModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
 }
 
+/**
+ * Closes all modals and restores scrolling
+ */
 function closeAll() {
     const allModals = document.querySelectorAll('.modal');
-    allModals.forEach(modal => modal.style.display = 'none');
+    allModals.forEach(modal => {
+        modal.style.display = 'none';
+    });
     document.body.style.overflow = 'auto';
 }
 
-// Close on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAll();
+// Close modals if the user presses the 'Escape' key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeAll();
+    }
 });
+
+// Optional: Close modal if clicking outside the white content box
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        closeAll();
+    }
+};
